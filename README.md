@@ -1,32 +1,32 @@
 ### CodeGenUnderStorIO
-####Кодогенератор Java классов при работе с SQLite через [StorIO](https://github.com/pushtorefresh/storio)
+####It's a Java classes code generator when working with SQLite through [StorIO](https://github.com/pushtorefresh/storio)
 
-Генерирует классы сущностей с использованием аннотаций необходимые для работы **StorIO**, а так же вспомогательные классы метаданных, содержащие статическую информацию описания таблиц БД.
+CodeGenUnderStorIO generates entity classes (with annotations) needed to work **StorIO**, as well as the supporting metadata classes that contains static information describing the tables of the database.
 
-####Для кого и зачем:
-Проект будет полезен тем пользователям **StorIO**, кто разрабатывает свою БД в любом визуальном редакторе, способном сгенерировать запросы создания таблиц. И поможет сэкономить время при описании разработанной схемы БД в Android проекте, путем генерации нужных java классов описания таблиц.
+####For whom and why:
+The project will be useful for those users of **StorIO**, who is developing its database in any visual editor that can generate queries to create tables. And **will help you to save time** when you describe а developed database schema in Android project **by generating the required java classes** of the tables description.
 
-####Как использовать:
-1. Cобрать в одном текстовом файле запросы вида CREATE TABLE 
-2. Запустить с аргументами файл **CodeGenUnderStorIO.jar**
+####How to use:
+1. You need to collect in a single text file the queries such as CREATE TABLE 
+2. Run with arguments the file **CodeGenUnderStorIO.jar**
 
-*Доступные аргументы в порядке их следования:*
-* Полный путь и название файла, содержащего SQL запросы (путь можно опустить если файл расположен в одной папке с CodeGenUnderStorIO.jar)
-* Наименование java package для указания его в генерируемых классах и создания соответствующей структуры каталогов
-* Полный или относительный путь расположения генерируемых файлов
+*Available arguments in the order they appear:*
+* The full path and name of the file containing the SQL queries (the path can be omitted if the file is located in the same folder with CodeGenUnderStorIO.jar)
+* The java package name to specify it in the generated classes and create the appropriate directory structure
+* Full or relative path to the location of the generated files
 
-####Пример использования
-* [Для пользователей Windows OS](https://github.com/shivan42/CodeGenUnderStorIO/tree/master/sample)
+####Example
+* [For Windows OS](https://github.com/shivan42/CodeGenUnderStorIO/tree/master/sample)
 
-Для тех, кто не определился с визуальным редактором структуры БД, предлагается воспользоваться [Visual Paradigm Community Edition](https://www.visual-paradigm.com/download/community.jsp). Именно в этом редакторе создана схема, используемая в [примере](https://github.com/shivan42/CodeGenUnderStorIO/tree/master/sample).
+For those who have not decided with a visual editor database structure, it is proposed to use [Visual Paradigm Community Edition](https://www.visual-paradigm.com/download/community.jsp). In this editor was generated schema used in the [example](https://github.com/shivan42/CodeGenUnderStorIO/tree/master/sample).
 
-####Сборка проекта
-Для запуска исходников проекта потребуется указать зависимости от сторонних библиотек:
+####Assembly of project
+To run the source codes of the project will need to specify dependencies from third party libraries:
 * [FreeMarker v2.3.x+](http://freemarker.org/freemarkerdownload.html)
 * [Commons-lang3 v3.4+](http://commons.apache.org/proper/commons-lang/download_lang.cgi)
 
 ----
-Проект создан по мотивам плагина [AutoGenerator](https://github.com/i17c/AutoGenerator), за что ему отдельное спасибо.
-Есть так же планы собрать из данного проекта плагин для IDE, но когда дойдут руки не известно. Так что, если вам понравился проект и у вас есть время создать из него плагин, с удовольствием приму ваши pull-requsts :)
+The project is inspired by the plugin [AutoGenerator](https://github.com/i17c/AutoGenerator) for which separate him thanks.
+There are also plans to assembly from this project a plugin for IDE, but when... who knows. So, if you like the project and you have time to create a plugin from it, I will gladly accept your pull-requsts :)
 
 Created by [@Shivan](https://github.com/shivan42)
