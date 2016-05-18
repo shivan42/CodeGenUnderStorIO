@@ -1,7 +1,7 @@
 ### CodeGenUnderStorIO
-####It's a Java classes code generator when working with SQLite through [StorIO](https://github.com/pushtorefresh/storio)
+####It's a Java classes code generator to work with `SQLite` through [StorIO](https://github.com/pushtorefresh/storio)
 
-CodeGenUnderStorIO generates entity classes (with annotations) needed to work **StorIO**, as well as the supporting metadata classes that contains static information describing the tables of the database.
+CodeGenUnderStorIO generates entity classes (with annotations) needed to work **StorIO**, as well as the supporting metadata classes that contain static information describing the tables of the database.
 
 ####For whom and why:
 The project will be useful for those users of **StorIO**, who is developing its database in any visual editor that can generate queries to create tables. And **will help you to save time** when you describe а developed database schema in Android project **by generating the required java classes** of the tables description.
