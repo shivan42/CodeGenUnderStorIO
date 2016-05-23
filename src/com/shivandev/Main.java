@@ -4,6 +4,7 @@ import freemarker.template.Template;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,7 @@ import java.util.Map;
 public class Main {
 
     private static final String DEFAULT_FULL_SQLFILE_PATH = "sql.ddl";  // вынести в поля плагина
-    private static final String DEFAULT_GENERATED_FILE_PATH = "out\\";  // вынести в поля плагина
+    private static final String DEFAULT_GENERATED_FILE_PATH = "out" + File.separator;  // вынести в поля плагина
 
     private static final Template STORIO_ENTITY_TMPL = TemplateUtil.getTemplate("StorIoEntity.ftl");
     private static final Template TABLE_META_DATA_TMPL = TemplateUtil.getTemplate("TableMetaData.ftl");
@@ -60,22 +61,23 @@ public class Main {
     }
 
     private String getFilePath(String target) {
-        return generatedFilePath + packageStr.replace(".", "\\") + "\\"+ target + "\\" + (!"".equals(subjectStr) ? subjectStr + "\\" : "");
+        return generatedFilePath + packageStr.replace(".", File.separator) + File.separator + target + File.separator + (!"".equals(subjectStr) ? subjectStr + File.separator : "");
     }
 
     public static void main(String[] args) {
         if (args != null) {
-            fullSqlFilePath = args[0];
-            if (args.length > 1 ) {
-                packageStr = args[1];
-                root.put("package", packageStr);
-            }
-            if (args.length > 2) {
-                generatedFilePath = args[2];
-            }
-            if (args.length >3 && !"".equals(args[3])) {
-                subjectStr = args[3];
-                root.put("subject", subjectStr);
+            switch (args.length) {
+                case 4:
+                    subjectStr = args[3];
+                    root.put("subject", subjectStr);
+                case 3:
+                    generatedFilePath = args[2];
+                case 2:
+                    packageStr = args[1];
+                    root.put("package", packageStr);
+                case 1:
+                    fullSqlFilePath = args[0];
+                    break;
             }
         } else {
             fullSqlFilePath = DEFAULT_FULL_SQLFILE_PATH;

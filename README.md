@@ -16,7 +16,9 @@ The project will be useful for those users of **StorIO**, who is developing its 
 * Full or relative path to the location of the generated files
 
 ####Example
-* [For Windows OS](https://github.com/shivan42/CodeGenUnderStorIO/tree/master/sample)
+See [there] (https://github.com/shivan42/CodeGenUnderStorIO/tree/master/sample)
+* For OS Windows look at windows_run.bat file
+* For OS Linux look at linux_run.sh file
 
 For those who have not decided with a visual editor database structure, it is proposed to use [Visual Paradigm Community Edition](https://www.visual-paradigm.com/download/community.jsp). In this editor was generated schema used in the [example](https://github.com/shivan42/CodeGenUnderStorIO/tree/master/sample).
 
