@@ -16,10 +16,11 @@ The project will be useful for those users of **StorIO**, who is developing its 
 * Full or relative path to the location of the generated files
 
 ####Example
-See [there] (https://github.com/shivan42/CodeGenUnderStorIO/tree/master/sample), to run codegen use
+See [there] (https://github.com/shivan42/CodeGenUnderStorIO/tree/master/sample). To run *codegen* use
 * [windows_run.bat](https://github.com/shivan42/CodeGenUnderStorIO/blob/master/sample/windows_run.bat) file for OS Windows 
 * [linux_run.sh](https://github.com/shivan42/CodeGenUnderStorIO/blob/master/sample/linux_run.sh) file for OS Linux
-and don't forget look at their code to see the arguments 
+
+And don't forget look at their code to see the arguments.
 
 For those who have not decided with a visual editor database structure, it is proposed to use [Visual Paradigm Community Edition](https://www.visual-paradigm.com/download/community.jsp). In this editor was generated schema used in the [example](https://github.com/shivan42/CodeGenUnderStorIO/tree/master/sample).
 
@@ -30,6 +31,6 @@ To run the source codes of the project will need to specify dependencies from th
 
 ----
 The project is inspired by the plugin [AutoGenerator](https://github.com/i17c/AutoGenerator) for which separate him thanks.
-There are also plans to assembly from this project a plugin for IDE, but when... who knows. So, if you like the project and you have time to create a plugin from it, I will gladly accept your pull-requsts :)
+There are also plans to assembly from this project a plugin for IDE, but when... who knows. So, if you like the project and you have time to create a plugin from it, I will gladly accept your pull-requsts : )
 
 Created by [@Shivan](https://github.com/shivan42)
