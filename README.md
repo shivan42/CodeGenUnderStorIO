@@ -18,7 +18,7 @@ The project will be useful for those users of **StorIO**, who is developing its 
 ####Example
 See [there] (https://github.com/shivan42/CodeGenUnderStorIO/tree/master/sample). To run *codegen* use
 * [windows_run.bat](https://github.com/shivan42/CodeGenUnderStorIO/blob/master/sample/windows_run.bat) file for OS Windows 
-* [linux_run.sh](https://github.com/shivan42/CodeGenUnderStorIO/blob/master/sample/linux_run.sh) file for OS Linux
+* [unix_run.sh](https://github.com/shivan42/CodeGenUnderStorIO/blob/master/sample/unix_run.sh) file for UNIX like OS
 
 And don't forget look at their code to see the arguments.
 
