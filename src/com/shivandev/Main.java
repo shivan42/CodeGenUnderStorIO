@@ -14,8 +14,8 @@ import java.util.Map;
  */
 public class Main {
 
-    private static final String DEFAULT_FULL_SQLFILE_PATH = "sql.ddl";  // вынести в поля плагина
-    private static final String DEFAULT_GENERATED_FILE_PATH = "out" + File.separator;  // вынести в поля плагина
+    private static final String DEFAULT_FULL_SQLFILE_PATH = "sql.ddl";  // in plans to include to the plugin's fields
+    private static final String DEFAULT_GENERATED_FILE_PATH = "out" + File.separator;  // in plans to include to the plugin's fields
 
     private static final Template STORIO_ENTITY_TMPL = TemplateUtil.getTemplate("StorIoEntity.ftl");
     private static final Template TABLE_META_DATA_TMPL = TemplateUtil.getTemplate("TableMetaData.ftl");
@@ -27,8 +27,8 @@ public class Main {
 
     static Map root = new HashMap();
     {
-        root.put("package", packageStr);  // вынести в поля плагина
-        root.put("subject", subjectStr);  // вынести в поля плагина
+        root.put("package", packageStr);  // in plans to include to the plugin's fields
+        root.put("subject", subjectStr);  // in plans to include to the plugin's fields
         root.put("today", System.currentTimeMillis());
     }
 
@@ -40,22 +40,26 @@ public class Main {
             FileReader fr = new FileReader(fullSqlFilePath);
             BufferedReader br = new BufferedReader(fr);
             String line;
+            StringBuilder strToAnalyze = new StringBuilder();
             String result;
             while ((line = br.readLine()) != null) {
-                if (StringUtils.isBlank(line)) {
-                    return;
+                if (StringUtils.isBlank(line))
+                    continue;
+                strToAnalyze.append(line);
+                if (line.contains(";")) {
+                    SqlInfo si = SqlAnalyze.analyze(strToAnalyze.toString());
+                    root.put("tableName", si.getTableName());
+                    root.put("columnList", si.getColumnList());
+                    root.put("optionsColumnList", si.getOptionsColumnList());
+                    result = TemplateUtil.parse(TABLE_META_DATA_TMPL, root);
+                    FileWriter.write(getFilePath("tables"), si.getTableName() + "Table" + ".java", result);
+                    result = TemplateUtil.parse(STORIO_ENTITY_TMPL, root);
+                    FileWriter.write(getFilePath("entities"), si.getTableName() + "Entity" + ".java", result);
+                    strToAnalyze = new StringBuilder();
                 }
-                System.out.println(line);
-                SqlInfo si = SqlAnalyze.analyze(line);
-                root.put("tableName", si.getTableName());
-                root.put("columnList", si.getColumnList());
-                root.put("optionsColumnList", si.getOptionsColumnList());
-                result = TemplateUtil.parse(TABLE_META_DATA_TMPL, root);
-                FileWriter.write(getFilePath("tables"), si.getTableName() + "Table" + ".java", result);
-                result = TemplateUtil.parse(STORIO_ENTITY_TMPL, root);
-                FileWriter.write(getFilePath("entities"), si.getTableName() + "Entity" + ".java", result);
             }
         } catch (Exception e) {
+            System.out.println("Error while generate classes.");
             e.printStackTrace();
         }
     }
@@ -83,7 +87,7 @@ public class Main {
             fullSqlFilePath = DEFAULT_FULL_SQLFILE_PATH;
             generatedFilePath = DEFAULT_GENERATED_FILE_PATH;
         }
-        new Main().generate();
 
+        new Main().generate();
     }
 }

@@ -15,15 +15,18 @@ public class SqlAnalyze {
 
     public static String cleanSql(String sql) {
         sql = sql.replaceAll("\\r", "");
-        sql = sql.replaceAll("\\n\\n", "\n");
-        sql = fixComment(sql);
+        sql = sql.replaceAll("\\n", "");
+        sql = saveNotColumnsSeparateComma(sql);
         sql = sql.replaceAll(",", "\n");
-        sql = sql.replaceAll("@", ",");
-//        System.out.println(sql);
+        sql = restoreNotColumnsSeparateComma(sql);
         return sql;
     }
 
-    private static String fixComment(String sql) {
+    private static String restoreNotColumnsSeparateComma(String sql) {
+        return sql.replaceAll("@", ",");
+    }
+
+    private static String saveNotColumnsSeparateComma(String sql) {
         String regStr = "comment\\s+'([^']*,[^']*)'";
         java.util.regex.Matcher mr = Pattern.compile(regStr, Pattern.CASE_INSENSITIVE + Pattern.DOTALL).matcher(sql);
         while (mr.find()) {
@@ -101,16 +104,6 @@ public class SqlAnalyze {
             return false;
         }
     }
-
-/*
-    public static void main(String[] args) throws Exception {
-//        String s = "CREATE TABLE Meals (Id INTEGER NOT NULL PRIMARY KEY, Changed integer(10) DEFAULT 0 NOT NULL, Deleted integer(10) DEFAULT 0 NOT NULL, Datetime integer(10) NOT NULL, MealTypesId integer(10) NOT NULL, FOREIGN KEY(MealTypesId) REFERENCES MealTypes(Id));";
-//        String s = "CREATE TABLE MealTypes (Id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, Name text NOT NULL UNIQUE, UNIQUE ( ID ) ON CONFLICT REPLACE);";
-        String s = "CREATE TABLE MealTypes (Id integer(10) NOT NULL, Name text NOT NULL UNIQUE, PRIMARY KEY (Id), UNIQUE ( ID ) ON CONFLICT REPLACE);";
-        SqlInfo si = analyze(s);
-//        System.out.println(s1);
-    }
-*/
 
     public static SqlInfo analyze(String sql) {
         sql = cleanSql(sql);
